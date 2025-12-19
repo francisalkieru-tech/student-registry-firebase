@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registry</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-secondary: #666666;
+            --border-color: #e1e1e1;
+            --accent-black: #000000;
+        }
+
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h1 { 
+            font-size: 24px; 
+            font-weight: 800; 
+            letter-spacing: -1px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            border-bottom: 4px solid var(--accent-black);
+            display: inline-block;
+        }
+
+        .form-container { 
+            background: #fff;
+            padding: 0;
+            margin-bottom: 40px;
+        }
+
+        h3 { 
+            font-size: 14px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        input { 
+            display: block; 
+            width: 100%; 
+            margin-bottom: 12px; 
+            padding: 12px; 
+            box-sizing: border-box; 
+            border: 1px solid var(--border-color);
+            border-radius: 0;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--accent-black);
+        }
+
+        button { 
+            background-color: var(--accent-black); 
+            color: white; 
+            border: none; 
+            padding: 15px; 
+            cursor: pointer; 
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%; 
+            transition: opacity 0.3s;
+        }
+
+        button:hover { 
+            opacity: 0.8; 
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid var(--border-color);
+            margin: 40px 0;
+        }
+
+        ul { list-style-type: none; padding: 0; }
+
+        li { 
+            background: #fff; 
+            margin-bottom: 15px; 
+            padding: 15px; 
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        li strong {
+            font-size: 16px;
+            color: var(--accent-black);
+        }
+
+        li small {
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .loading { 
+            color: var(--text-secondary); 
+            font-style: italic; 
+            text-align: center;
+            border: none;
+        }
+
+        .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 1000; 
+        left: 0; top: 0; width: 100%; height: 100%; 
+        background-color: rgba(0,0,0,0.9); 
+        align-items: center; justify-content: center;
+    }
+    .modal-content {
+        background-color: white;
+        padding: 40px;
+        text-align: center;
+        width: 80%;
+        max-width: 400px;
+        animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    .modal-content h2 { letter-spacing: 5px; margin-bottom: 10px; }
+    #registeredName { font-size: 20px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; }
+    
+    @keyframes popIn {
+        0% { transform: scale(0); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <h1>Registry System</h1>
+
+        <div class="form-container">
+            <h3>Add New Student</h3>
+            <input type="text" id="studentName" placeholder="Full Name">
+            <input type="email" id="studentEmail" placeholder="Email Address">
+             <input type="numaber" id="studentAge" placeholder="Age">
+            <button id="saveBtn">Add Student</button>
+        </div>
+
+        <hr>
+
+        <h3>Registered Database</h3>
+        <ul id="studentList">
+            <li class="loading">Establishing cloud connection...</li>
+        </ul>
+    </div>
+
+    <div id="congratsModal" class="modal">
+    <div class="modal-content">
+        <h2 id="congratsMessage">ADD STUDENT SUCCESSFULLY!</h2>
+        <p id="registeredName"></p>
+        <button onclick="closeModal()">CLOSE</button>
+    </div>
+</div>
+
+
+<script>
+    function closeModal() {
+        document.getElementById("congratsModal").style.display = "none";
+    }
+</script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
